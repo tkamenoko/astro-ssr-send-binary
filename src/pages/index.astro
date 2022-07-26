@@ -1,0 +1,22 @@
+---
+import Container from "../components/Container.astro"; 
+import {sendBinaryBody} from "../api"
+
+
+const sentBody = Uint8Array.from([0,1,33,233])
+const receivedBody=await sendBinaryBody(Astro.request,sentBody)
+
+
+console.log((sentBody))
+console.log((receivedBody))
+---
+
+<html>
+	<body>
+		<Container tag="main">
+			<h1>Binary request test</h1>
+			<p>Sent: {Array.from(sentBody).join(", ")}</p>
+			<p>Received: {Array.from(receivedBody).join(", ")}</p>
+					</Container>
+	</body>
+</html>
